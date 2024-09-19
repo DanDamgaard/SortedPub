@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="SortedPub.MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="90*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="loadingGrid" BackgroundColor="Black" Grid.Row="0" Grid.RowSpan="2"  IsVisible="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="70*"/>
+                <ColumnDefinition Width="15*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="dotnet_bot.png" Grid.Column="1" Grid.Row="1"/>
+            
+        </Grid>
+        
+        
+        <ImageButton HorizontalOptions="Start" Grid.Row="0" BackgroundColor="Transparent"  VerticalOptions="Start" x:Name="maxMenuBtn"  Source="menu_out.png" Clicked="maxMenuBtn_Clicked" IsVisible="True"></ImageButton>
+
+        <Grid x:Name="selectFolderBtnGrid" BackgroundColor="Transparent" Grid.Row="0" Grid.RowSpan="2"  IsVisible="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="70*"/>
+                <ColumnDefinition Width="15*"/>
+            </Grid.ColumnDefinitions>
+
+            <ImageButton x:Name="selectFolderBtn" Grid.Column="1" Grid.Row="1" Source="folder.png" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="True" Clicked="selectFolderBtn_Clicked"></ImageButton>
+
+        </Grid>
+
+        <Grid x:Name="AllBooksGrid" Grid.Column="1" Grid.Row="1" IsVisible="False">
+            <ScrollView >
+                <StackLayout Orientation="Vertical" x:Name="BookListScroll" Margin="20" Spacing="25" HorizontalOptions="Center">
+
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+
+        <Grid x:Name="BookDetailsGrid" IsVisible="False" RowSpacing="5" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="#CC505050">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="90*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="30*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Grid.Row="2" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Transparent" Clicked="closeBookDetailsGridBtn_Clicked"/>
+            <Button Grid.Column="1" Grid.Row="0" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Transparent" Clicked="closeBookDetailsGridBtn_Clicked"/>
+            <Button Grid.Column="0" Grid.Row="0" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Transparent" Clicked="closeBookDetailsGridBtn_Clicked"/>
+            <Button Grid.Column="2" Grid.Row="1" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Transparent" Clicked="closeBookDetailsGridBtn_Clicked"/>
+            <Button Grid.Column="2" Grid.Row="0" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Transparent" Clicked="closeBookDetailsGridBtn_Clicked"/>
+            <Button Grid.Column="0" Grid.Row="1" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Transparent" Clicked="closeBookDetailsGridBtn_Clicked"/>
+            <Button Grid.Column="0" Grid.Row="2" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Transparent" Clicked="closeBookDetailsGridBtn_Clicked"/>
+            <Button Grid.Column="1" Grid.Row="2" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Transparent" Clicked="closeBookDetailsGridBtn_Clicked"/>
+            <Button Grid.Column="2" Grid.Row="2" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Transparent" Clicked="closeBookDetailsGridBtn_Clicked"/>
+            
+            <Border Stroke="#606060" StrokeThickness="4" Grid.Column="1" Grid.Row="1" Background="#252525" Padding="16,8"  HorizontalOptions="Fill">
+                <Grid RowSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="80*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="60*"/>
+                        <RowDefinition Height="28*"/>
+                        <RowDefinition Height="8*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="BookDtailTitleLabel" HorizontalOptions="Center" Grid.Row="0" Grid.Column="1"></Label>
+                    <Button Grid.Row="0" Grid.Column="2" CornerRadius="0" FontSize="20" BackgroundColor="Transparent" Text="X" TextColor="Red" FontAttributes="Bold" Clicked="closeBookDetailsGridBtn_Clicked" ></Button>
+                    <Image x:Name="detailBookImage" Grid.Row="1" Grid.Column="1"/>
+                    <ScrollView Grid.Row="2" Grid.Column="1">
+                        <Label x:Name="DetailBookLabel" TextType="Html"></Label>
+                    </ScrollView>
+                    <Button x:Name="ReadBookBtn" Grid.Column="1" Grid.Row="3" Text="Start reading"></Button>
+                </Grid>
+
+                
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="40,40,40,40" />
+                </Border.StrokeShape>
+            </Border>
+        </Grid>
+        
+        <Grid x:Name="sideMenuGrid" Grid.RowSpan="2" IsVisible="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="col1" Width="20*"/>
+                <ColumnDefinition x:Name="col2" Width="80*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Background="#252525">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="90*"/>
+                </Grid.RowDefinitions>
+                <ImageButton Grid.Row="0" x:Name="minMenuBtn" BackgroundColor="Transparent" Source="menu_in.png" Clicked="minMenuBtn_Clicked"/>
+                <StackLayout Grid.Row="1" Orientation="Vertical" Spacing="10">
+                    <Button x:Name="selectNewFolderBtn"   Text="Select folder" Clicked="selectNewFolderBtn_Clicked"></Button>
+                    <Button x:Name="settingsBtn" Text="Settings" Clicked="settingsBtn_Clicked"></Button>
+                </StackLayout>
+            </Grid>
+
+            <Button x:Name="HideMenuBtn" Grid.Column="1" BackgroundColor="Transparent"  Clicked="HideMenuBtn_Clicked"/>
+            
+        </Grid>
+        
+    </Grid>
+
+</ContentPage>
