@@ -95,7 +95,7 @@
                     <ScrollView Grid.Row="2" Grid.Column="1">
                         <Label x:Name="DetailBookLabel" TextType="Html"></Label>
                     </ScrollView>
-                    <Button x:Name="ReadBookBtn" Grid.Column="1" Grid.Row="3" Text="Start reading"></Button>
+                    <Button x:Name="ReadBookBtn" Grid.Column="1" Grid.Row="3" Text="Start reading" Clicked="ReadBookBtn_Clicked"></Button>
                 </Grid>
 
                 

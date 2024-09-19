@@ -10,6 +10,7 @@ using SortedPub.Services;
 using CommunityToolkit.Maui.Core.Primitives;
 using System.Collections.Generic;
 using Microsoft.Maui.Controls.Shapes;
+using SortedPub.Pages;
 
 namespace SortedPub
 {
@@ -22,6 +23,7 @@ namespace SortedPub
 
         bool hidden = true;
         bool hasKey = Preferences.Default.ContainsKey("books_path");
+        BookClass chosenBook;
 
 
         public MainPage()
@@ -81,7 +83,6 @@ namespace SortedPub
                 {
                     menuTimer.Stop();
                     hidden = false;
-                    //minMenuBtn.IsVisible = true;
                 }
             }
             else
@@ -171,7 +172,9 @@ namespace SortedPub
             BookDetailsGrid.IsVisible = true;
             BookDtailTitleLabel.Text = book.Title;
             DetailBookLabel.Text = book.Description;
+            chosenBook = book;
             detailBookImage.Source = ImageSource.FromStream(() => new MemoryStream(epub.CoverImage));
+
         }
 
 
@@ -351,6 +354,11 @@ namespace SortedPub
         private void closeBookDetailsGridBtn_Clicked(object sender, EventArgs e)
         {
             BookDetailsGrid.IsVisible = false;
+        }
+
+        private async void ReadBookBtn_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ReadPage(chosenBook));
         }
     }
 
