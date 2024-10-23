@@ -1,5 +1,6 @@
 using SortedPub.Classes;
 using VersOne.Epub;
+using VersOne.Epub.Environment;
 
 namespace SortedPub.Pages;
 
@@ -16,15 +17,20 @@ public partial class ReadPage : ContentPage
 
     private void showBook(BookClass book)
     {
-        EpubBook eBook = EpubReader.ReadBook(book.Path);
+        EpubBookRef eBook = EpubReader.OpenBook(book.Path);
 
-        var b = eBook.Content;
+        IZipFile b = eBook.EpubFile;
+
+        Image i = new Image
+        {
+            Source = ImageSource.FromFile("dotnet_bot.png")
+        };
 
         WebView webView = new WebView
         {
             Source = new HtmlWebViewSource
             {
-                Html = $"<HTML><BODY><H1>.NET MAUI</H1><P>Welcome to WebView.</P></BODY></HTML>"
+                Html = $" <img src={i.Source} >"
             }
         };
 
